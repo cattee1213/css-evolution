@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>the clock</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="clock">
+        <div class="hour"></div>
+        <div class="min"></div>
+        <div class="sec"></div>
+      </div>
+      <div class="clock-animation">
+        <div class="hour"></div>
+        <div class="min"></div>
+        <div class="sec"></div>
+      </div>
+    </div>
+  </body>
+  <script>
+    // 360 / 12 = 30
+    // 360 / 60 = 6
+    {
+      const hour = document.querySelector('.clock .hour');
+      const min = document.querySelector('.clock .min');
+      const sec = document.querySelector('.clock .sec');
+
+      const time = new Date();
+      let timeHour = time.getHours() > 12 ? time.getHours() - 12 : time.getHours();
+      let timeMin = time.getMinutes();
+      let timeSec = time.getSeconds();
+      setInterval(() => {
+        timeHour += 1 / 3600;
+        timeMin += 1 / 60;
+        timeSec += 1;
+        hour.style = `transform:rotate(${30 * timeHour + 0.5 * timeMin}deg)`;
+        min.style = `transform:rotate(${6 * timeMin + 0.1 * timeSec}deg)`;
+        sec.style = `transform:rotate(${6 * timeSec}deg)`;
+      }, 1000);
+    }
+
+    {
+      const hour = document.querySelector('.clock-animation .hour');
+      const min = document.querySelector('.clock-animation .min');
+      const sec = document.querySelector('.clock-animation .sec');
+      const time = new Date();
+      let timeHour = time.getHours() > 12 ? time.getHours() - 12 : time.getHours();
+      let timeMin = time.getMinutes();
+      let timeSec = time.getSeconds();
+      setInterval(() => {
+        timeHour += 1 / 3600;
+        timeMin += 1 / 60;
+        timeSec += 1;
+
+        hour.style = `transform:rotate(${30 * timeHour + 0.5 * timeMin}deg)`;
+        min.style = `transform:rotate(${6 * timeMin + 0.1 * timeSec}deg)`;
+        sec.style = `transform:rotate(${6 * timeSec}deg)`;
+      }, 1000);
+    }
+  </script>
+</html>

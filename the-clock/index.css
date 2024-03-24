@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  background-color: rgb(49, 49, 49);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.clock,
+.clock-animation {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  border: 2px solid lightblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clock::before,
+.clock-animation::before {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+.hour {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.hour::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 110px;
+  background-color: #fff;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.min {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.min::before {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 160px;
+  background-color: #afafaf;
+  border-top-left-radius: 2.5px;
+  border-top-right-radius: 2.5px;
+}
+
+.sec {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.sec::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 200px;
+  background-color: lightblue;
+  border-top-left-radius: 1px;
+  border-top-right-radius: 1px;
+}
+
+.clock-animation .hour,
+.clock-animation .min,
+.clock-animation .sec {
+  transition: 1s;
+  transition-timing-function: linear;
+}
