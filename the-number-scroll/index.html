@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>the number scroll</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="observer">
+        <number-scroll-linear
+          v-for="(num,index) in initNumber"
+          :key="index"
+          :init-number="num"
+          :index="initNumber.length - 1 - index"
+          :offset-y="getOffsetY(num,index)"
+        ></number-scroll-linear>
+      </div>
+    </div>
+    <script type="text/x-template" id="number-scroll-linear">
+      <div class="dot" v-if="isNaN(initNumber)">{{initNumber}}</div>
+      <div class="number-scroll" v-else :style="cssVars">01234567890</div>
+    </script>
+    <script>
+      const NumberScrollLinear = {
+        template: '#number-scroll-linear',
+        props: {
+          initNumber: {
+            type: [Number, String],
+            default: 0
+          },
+          index: {
+            type: Number,
+            default: 0
+          },
+          offsetY: {
+            type: Number,
+            default: 0
+          }
+        },
+        computed: {
+          translateY() {
+            return Number(this.initNumber) * 100;
+          },
+          cssVars() {
+            // if (isNaN(this.initNumber[this.index + 1])) {
+            //   return {
+            //     '--Y': '-' + (this.translateY + this.offsetY) + '%',
+            //     '--d1': (10 - Number(this.initNumber)) * 10 ** (this.index - 1) + 's',
+            //     '--d2': 10 * 10 ** (this.index - 1) + 's'
+            //   };
+            // } else {
+            //   return {
+            //     '--Y': '-' + (this.translateY + this.offsetY) + '%',
+            //     '--d1': (10 - Number(this.initNumber)) * 10 ** this.index + 's',
+            //     '--d2': 10 * 10 ** this.index + 's'
+            //   };
+            // }
+            return {
+              '--Y': '-' + (this.translateY + this.offsetY) + '%',
+              '--d1': ((10 * 100 - (this.translateY + this.offsetY)) / 100) * 10 ** this.index + 's',
+              '--d2': 10 * 10 ** this.index + 's'
+            };
+          }
+        }
+      };
+      new Vue({
+        el: '#app',
+        components: { 'number-scroll-linear': NumberScrollLinear },
+        data() {
+          return {
+            initNumber: '5656',
+            duration: 1 * 60 * 60,
+            distNumber: '198.43'
+          };
+        },
+        methods: {
+          // 每一秒的步长
+          getStepBySec() {
+            return (Number(this.distNumber) - Number(this.initNumber)) / this.duration;
+          },
+          getOffsetY(num, index) {
+            if (!isNaN(num)) {
+              if (index === this.initNumber.length - 1) {
+                // 个位数 偏移量0
+                return 0;
+              } else {
+                // 其余位数 0
+                let nextIndex = index + 1;
+                let nextNumber = this.initNumber[nextIndex];
+                if (isNaN(nextNumber)) {
+                  nextIndex = index + 2;
+                  nextNumber = this.initNumber[nextIndex];
+                }
+                return nextNumber * 10 + this.getOffsetY(nextNumber, nextIndex) * 10 ** -nextIndex;
+              }
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

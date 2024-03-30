@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(49, 49, 49);
+  gap: 20px;
+  font-size: 14px;
+  color: #fff;
+}
+
+.number-scroll {
+  color: #fff;
+  font-size: 26px;
+  width: 16px;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  letter-spacing: 2px;
+  will-change: transform;
+  /* transform: translateY(var(--Y)); */
+  animation: animation1 var(--d1) linear, animation2 var(--d2) linear var(--d1) infinite;
+}
+.dot {
+  font-size: 26px;
+  width: 16px;
+  letter-spacing: 2px;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  letter-spacing: 2px;
+}
+
+@keyframes animation1 {
+  0% {
+    transform: translateY(var(--Y));
+  }
+  100% {
+    transform: translateY(-1000%);
+  }
+}
+@keyframes animation2 {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-1000%);
+  }
+}
+
+.observer {
+  width: 100%;
+  background-color: grey;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  /* overflow: hidden; */
+}
