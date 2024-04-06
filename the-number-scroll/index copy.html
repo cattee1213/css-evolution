@@ -10,16 +10,19 @@
   <body>
     <div id="app">
       <div class="observer">
-        <number-scroll-linear :init-number="initNumber" :dist-number="distNumber"></number-scroll-linear>
+        {{intData}}.
+        <number-scroll-linear
+          v-for="(num,index) in floatData"
+          :key="index"
+          :init-number="num"
+          :index="floatData.length - 1 - index"
+          :offset-y="getOffsetY(num,index)"
+          @add="added"
+        ></number-scroll-linear>
       </div>
     </div>
     <script type="text/x-template" id="number-scroll-linear">
-      <div  class="number-scroll-box">
-         <div v-for="(number,index) in initNumberR.toString()" :key="index">
-          <div class="dot" v-if="isNaN(number)">{{number}}</div>
-          <div class="number-scroll" v-else :style="cssVars(number,index)">01234567890</div>
-         </div>
-      </div>
+      <div class="number-scroll" @transitionend="transitionend" ref="refNumber" :style="cssVars">01234567890</div>
     </script>
     <script>
       const NumberScrollLinear = {
@@ -29,61 +32,46 @@
             type: [Number, String],
             default: 0
           },
-          distNumber: {
-            type: [Number, String],
+          index: {
+            type: Number,
             default: 0
+          },
+          offsetY: {
+            type: Number,
+            default: 0
+          },
+          duration: {
+            type: Number,
+            default: 100
+          }
+        },
+        mounted() {
+          this.$refs.refNumber.style.transition = `transform 0s linear`;
+          this.$refs.refNumber.style.transform = `translateY(${this.cssVars['--Y']})`;
+          setTimeout(() => {
+            this.$refs.refNumber.style.transition = `transform ${this.cssVars['--d1']} linear`;
+            this.$refs.refNumber.style.transform = `translateY(-1000%)`;
+          }, 1);
+        },
+        methods: {
+          transitionend(e) {
+            this.$refs.refNumber.style.transition = `transform ${this.cssVars['--d2']} linear`;
+            this.$refs.refNumber.style.transform = `translateY(-1000%)`;
+            if (this.index === 1) {
+              console.log('added');
+            }
           }
         },
         computed: {
-          // 补位后的初始值，用于前位补0
-          initNumberR() {
-            let temp = this.initNumber.toString();
-            const diff = this.distNumber.toString().length - this.initNumber.toString().length;
-            if (diff > 0) {
-              for (let i = 0; i < diff; i++) {
-                temp = '0' + temp;
-              }
-            }
-            return temp;
-          },
           translateY() {
             return Number(this.initNumber) * 100;
-          }
-          // cssVars() {
-          //   return {
-          //     '--Y': '-' + (this.translateY + this.offsetY) + '%',
-          //     '--d1': ((10 * 100 - (this.translateY + this.offsetY)) / 100) * 10 ** this.index + 's',
-          //     '--d2': 10 * 10 ** this.index + 's'
-          //   };
-          // }
-        },
-        methods: {
-          cssVars(num, index) {
-            const index_reverse = this.initNumberR.length - index;
-            const duration = 11;
-            // ((10 * 100 - (this.translateY + this.offsetY)) / 100) * 10 ** this.index + 's',
-            // const firstAnimationDuration =
-            //   ((100 - (((10 - Number(num)) / 11) * 100 + this.getOffsetY(num, index))) / 100) * duration ** index_reverse;
-
-            const firstAnimationDuration = (100 - (Number(num) / 11) * 100 + this.getOffsetY(num, index)) * duration ** (index_reverse - 1);
-
-            return {
-              transform: `translateY(-${(Number(num) / 11) * 100 + this.getOffsetY(num, index)}%)`
-              // animation: `animation1 ${firstAnimationDuration}s linear,animation2 ${
-              //   duration ** index_reverse
-              // }s linear ${firstAnimationDuration}s infinite`
-            };
           },
-          getOffsetY(num, index) {
-            const index_reverse = this.initNumberR.length - index;
-            if (index_reverse === 1) {
-              return 0;
-            } else {
-              // 倒数第二位 偏移量算上最后一位偏移
-              let lastIndex = index + 1;
-              let lastNumber = this.initNumberR[lastIndex];
-              return lastNumber + this.getOffsetY(lastNumber, lastIndex) * 0.1;
-            }
+          cssVars() {
+            return {
+              '--Y': '-' + (this.translateY + this.offsetY) + '%',
+              '--d1': this.duration / (10 - this.initNumber) + (this.offsetY / 1000) * this.duration * (this.index + 1) + 's',
+              '--d2': this.duration * (this.index + 1) + 's'
+            };
           }
         }
       };
@@ -92,12 +80,44 @@
         components: { 'number-scroll-linear': NumberScrollLinear },
         data() {
           return {
-            initNumber: '5656',
+            initNumber: '56.56',
             duration: 1 * 60 * 60,
-            distNumber: '19843'
+            distNumber: '198.43',
+
+            count: 0
           };
         },
-        methods: {}
+        computed: {
+          intData() {
+            return this.initNumber.split('.')[0];
+          },
+          floatData() {
+            return this.initNumber.split('.')[1];
+          }
+        },
+        methods: {
+          // 每一秒的步长
+          getStepBySec() {
+            return (Number(this.distNumber) - Number(this.initNumber)) / this.duration;
+          },
+          getOffsetY(num, index) {
+            if (!isNaN(num)) {
+              if (index === 0) {
+                // 只计算第一位小数偏移
+                // 获取第二位小数，确定第一位的偏移量
+                let nextIndex = index + 1;
+                let nextNumber = this.floatData[nextIndex];
+                return nextNumber * 10;
+              } else {
+                // 第二位（最后一位）不计算偏移
+                return 0;
+              }
+            }
+          },
+          added() {
+            this.initNumber = (Number(this.initNumber) + 1).toString();
+          }
+        }
       });
     </script>
   </body>

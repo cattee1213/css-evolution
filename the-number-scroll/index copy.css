@@ -16,10 +16,7 @@
   font-size: 14px;
   color: #fff;
 }
-.number-scroll-box {
-  display: flex;
-  width: auto;
-}
+
 .number-scroll {
   color: #fff;
   font-size: 26px;
@@ -29,7 +26,9 @@
   letter-spacing: 2px;
   will-change: transform;
   /* transform: translateY(var(--Y)); */
-  /* animation: animation1 var(--d1) linear, animation2 var(--d2) linear var(--d1) infinite; */
+  /* animation: animation1 var(--d1) linear; */
+  /* transition: var(--d1); */
+  transform: translateY(var(--Y));
 }
 .dot {
   font-size: 26px;
@@ -42,9 +41,10 @@
 
 @keyframes animation1 {
   0% {
+    transform: translateY(var(--Y));
   }
   100% {
-    transform: translateY(calc(10 / 11 * -100%));
+    transform: translateY(-1000%);
   }
 }
 @keyframes animation2 {
@@ -52,7 +52,7 @@
     transform: translateY(0);
   }
   100% {
-    transform: translateY(calc(10 / 11 * -100%));
+    transform: translateY(-1000%);
   }
 }
 
