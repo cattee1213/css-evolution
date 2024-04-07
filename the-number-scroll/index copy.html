@@ -42,21 +42,27 @@
           },
           duration: {
             type: Number,
-            default: 100
+            default: 5
           }
         },
         mounted() {
-          this.$refs.refNumber.style.transition = `transform 0s linear`;
-          this.$refs.refNumber.style.transform = `translateY(${this.cssVars['--Y']})`;
-          setTimeout(() => {
-            this.$refs.refNumber.style.transition = `transform ${this.cssVars['--d1']} linear`;
-            this.$refs.refNumber.style.transform = `translateY(-1000%)`;
-          }, 1);
+          // this.$refs.refNumber.style.transition = `transform 0s linear`;
+          // this.$refs.refNumber.style.transform = `translateY(${this.cssVars['--Y']})`;
+          // setTimeout(() => {
+          //   this.$refs.refNumber.style.transition = `transform ${this.cssVars['--d1']} linear`;
+          //   this.$refs.refNumber.style.transform = `translateY(-1000%)`;
+          // }, 1);
         },
         methods: {
           transitionend(e) {
-            this.$refs.refNumber.style.transition = `transform ${this.cssVars['--d2']} linear`;
-            this.$refs.refNumber.style.transform = `translateY(-1000%)`;
+            this.$refs.refNumber.style.transition = `transform 0s linear`;
+            this.$refs.refNumber.style.transform = `translateY(0)`;
+
+            setTimeout(() => {
+              this.$refs.refNumber.style.transition = `transform ${this.cssVars['--d2']} linear`;
+              this.$refs.refNumber.style.transform = `translateY(-1000%)`;
+            }, 1);
+
             if (this.index === 1) {
               console.log('added');
             }
@@ -67,11 +73,24 @@
             return Number(this.initNumber) * 100;
           },
           cssVars() {
-            return {
-              '--Y': '-' + (this.translateY + this.offsetY) + '%',
-              '--d1': this.duration / (10 - this.initNumber) + (this.offsetY / 1000) * this.duration * (this.index + 1) + 's',
-              '--d2': this.duration * (this.index + 1) + 's'
-            };
+            if (this.offsetY === 0) {
+              // 最后一位
+              return {
+                '--Y': '-' + this.translateY + '%',
+                '--d1': ((10 - this.initNumber) / 10) * this.duration * 10 ** this.index + 's',
+                '--d2': this.duration * 10 ** this.index + 's'
+              };
+            } else {
+              // 倒数第二位
+              return {
+                '--Y': '-' + (this.translateY + this.offsetY) + '%',
+                '--d1':
+                  ((10 - this.initNumber) / 10) * this.duration * 10 ** this.index -
+                  (1 - this.offsetY / 100) * this.duration * 10 ** (this.index - 1) +
+                  's',
+                '--d2': this.duration * 10 ** this.index + 's'
+              };
+            }
           }
         }
       };
@@ -80,7 +99,7 @@
         components: { 'number-scroll-linear': NumberScrollLinear },
         data() {
           return {
-            initNumber: '56.56',
+            initNumber: '1234567890.55',
             duration: 1 * 60 * 60,
             distNumber: '198.43',
 
