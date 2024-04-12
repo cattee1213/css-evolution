@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>the text hover</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="text">what doesn't kill you makes you stronger</div>
+
+    <script>
+      const textNode = document.querySelector('.text');
+      let temp = '';
+      textNode.innerText.split('').forEach((char) => {
+        temp += `<span>${char}</span>`;
+      });
+      textNode.innerHTML = temp;
+
+      const spans = document.querySelectorAll('span');
+      spans.forEach((span, index) => {
+        span.addEventListener('mouseover', () => {
+          spans.forEach((s, i) => {
+            const dist = Math.abs(index - i);
+            s.style.transitionDelay = dist * 0.1 + 's';
+          });
+        });
+
+        span.addEventListener('mouseleaver', () => {
+          spans.forEach((s, i) => {
+            s.style.transitionDelay = '0s';
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
