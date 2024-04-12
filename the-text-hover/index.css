@@ -22,10 +22,3 @@ body {
   cursor: default;
   transition: 0.5s;
 }
-
-.text:hover span {
-  color: #fff;
-  transition: 0.5s;
-  filter: drop-shadow(0 0 10px #fff);
-  /* text-shadow: 0 0 10px #fff; */
-}

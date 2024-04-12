@@ -23,12 +23,16 @@
           spans.forEach((s, i) => {
             const dist = Math.abs(index - i);
             s.style.transitionDelay = dist * 0.1 + 's';
+            s.style.color = '#fff';
+            s.style.setProperty('filter', 'drop-shadow(0 0 10px #fff)');
           });
         });
 
         span.addEventListener('mouseleave', () => {
           spans.forEach((s, i) => {
-            s.style.transitionDelay = '0s';
+            // s.style.transitionDelay = dist * 0.1 + 's';
+            s.style.color = 'rgba(255, 255, 255, 0.1)';
+            s.style.setProperty('filter', 'none');
           });
         });
       });
