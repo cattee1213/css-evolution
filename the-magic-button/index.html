@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>the magic button</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <button id="btn">click me</button>
+    <script>
+      const btn = document.querySelector('#btn');
+
+      btn.addEventListener('click', () => {
+        for (let index = 0; index < 30; index++) {
+          const span = document.createElement('span');
+          span.className = 'span';
+          // 随机位置
+          span.style.setProperty('--x', (Math.random() - 0.5) * (document.body.offsetWidth / 1.2) + 'px');
+          span.style.setProperty('--y', (Math.random() - 0.5) * (document.body.offsetHeight / 1.2) + 'px');
+          // 随机样式
+          if (index % 2 === 0) {
+            span.style.setProperty('background-color', 'transparent');
+            span.style.setProperty('border', '2px rgb(194, 194, 194) solid');
+            // 随机颜色
+            span.style.setProperty('border', `2px rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}) solid`);
+          } else {
+            // 随机颜色
+            span.style.setProperty('background-color', `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`);
+          }
+
+          // 随机大小
+          let size = Math.random() * 20 + 5;
+          span.style.setProperty('width', `${size}px`);
+          span.style.setProperty('height', `${size}px`);
+          document.body.appendChild(span);
+          setTimeout(() => {
+            span.remove();
+          }, 2000);
+        }
+      });
+    </script>
+  </body>
+</html>
