@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>the click effect</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    try to click
+    <script>
+      document.body.addEventListener('click', (e) => {
+        const divEl = document.createElement('div');
+        divEl.classList.add('div');
+        const x = e.clientX - document.body.offsetLeft;
+        const y = e.clientY - document.body.offsetTop;
+        divEl.style.top = `${y}px`;
+        divEl.style.left = `${x}px`;
+        divEl.style.setProperty('filter', `hue-rotate(${Math.random() * 360}deg)`);
+
+        for (let i = 0; i < 8; i++) {
+          const spanEl = document.createElement('span');
+          spanEl.classList.add('span');
+          spanEl.style.setProperty('--deg', `${i * 45}deg`);
+          divEl.appendChild(spanEl);
+        }
+        document.body.appendChild(divEl);
+
+        // setTimeout(() => {
+        //   divEl.remove();
+        // }, 2000);
+      });
+    </script>
+  </body>
+</html>
