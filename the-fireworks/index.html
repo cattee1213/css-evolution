@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>the fireworks</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <script>
+      document.body.addEventListener('click', (e) => {
+        const count = 20;
+        for (let i = 0; i < count; i++) {
+          if (i < count - 10) {
+            const divEl = document.createElement('div');
+            divEl.classList.add('div');
+            const x = e.clientX - document.body.offsetLeft;
+            const y = e.clientY - document.body.offsetTop;
+            divEl.style.top = `${y}px`;
+            divEl.style.left = `${x}px`;
+            divEl.style.setProperty('--size', `${count - i}`);
+            divEl.style.setProperty('--delay', `${i * 0.02}s`);
+            divEl.style.setProperty('--x', `${i / 2}px`);
+
+            divEl.style.setProperty('transform', `translate(${i / 2}px,0)`);
+
+            // divEl.style.setProperty('filter', `hue-rotate(${Math.random() * 360}deg)`);
+            setTimeout(() => {
+              document.body.appendChild(divEl);
+            }, i * 20);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
