@@ -9,7 +9,8 @@
   <body>
     <script>
       document.body.addEventListener('click', (e) => {
-        const count = 20;
+        const count = 40;
+        const rd = Math.random();
         for (let i = 0; i < count; i++) {
           if (i < count - 10) {
             const divEl = document.createElement('div');
@@ -19,15 +20,16 @@
             divEl.style.top = `${y}px`;
             divEl.style.left = `${x}px`;
             divEl.style.setProperty('--size', `${count - i}`);
-            divEl.style.setProperty('--delay', `${i * 0.02}s`);
-            divEl.style.setProperty('--x', `${i / 2}px`);
+            divEl.style.setProperty('--delay', `${i * 0.01}s`);
+            divEl.style.setProperty('--x', `${i / 20}px`);
+            divEl.style.setProperty('filter', `hue-rotate(${rd * 360}deg)`);
 
             divEl.style.setProperty('transform', `translate(${i / 2}px,0)`);
 
             // divEl.style.setProperty('filter', `hue-rotate(${Math.random() * 360}deg)`);
             setTimeout(() => {
               document.body.appendChild(divEl);
-            }, i * 20);
+            }, i * 10);
           }
         }
       });
