@@ -41,20 +41,27 @@
 
         const y = e.clientY - document.body.offsetTop - 400;
         const x = e.clientX - document.body.offsetLeft;
+
+        const divEl = document.createElement('div');
+        divEl.classList.add('spans');
+        divEl.style.top = `${y - 100}px`;
+        divEl.style.left = `${x}px`;
         for (let i = 0; i < 8; i++) {
           const spanEl = document.createElement('span');
           spanEl.classList.add('span');
           spanEl.style.setProperty('--deg', `${i * 45}deg`);
           spanEl.style.setProperty('--hue', `${rd * 360}deg`);
-          spanEl.style.top = `${y - 100}px`;
-          spanEl.style.left = `${x}px`;
-          setTimeout(() => {
-            document.body.appendChild(spanEl);
-            setTimeout(() => {
-              spanEl.remove();
-            }, 5500);
-          }, 4000 + 300);
+          // spanEl.style.top = `${y - 100}px`;
+          // spanEl.style.left = `${x}px`;
+          divEl.appendChild(spanEl);
         }
+
+        setTimeout(() => {
+          document.body.appendChild(divEl);
+          setTimeout(() => {
+            divEl.remove();
+          }, 5500);
+        }, 4000 + 300);
       });
     </script>
   </body>

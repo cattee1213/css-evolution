@@ -35,6 +35,11 @@ body {
   }
 }
 
+.spans {
+  position: absolute;
+  display: flex;
+}
+
 .span {
   transform: rotate(var(--deg));
   transform-origin: bottom;
