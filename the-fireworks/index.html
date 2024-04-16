@@ -9,6 +9,7 @@
   <body>
     <script>
       document.body.addEventListener('click', (e) => {
+        // 烟花束
         const count = 40;
         const rd = Math.random();
         for (let i = 0; i < count; i++) {
@@ -24,13 +25,35 @@
             divEl.style.setProperty('--x', `${i / 20}px`);
             divEl.style.setProperty('filter', `hue-rotate(${rd * 360}deg)`);
 
-            divEl.style.setProperty('transform', `translate(${i / 2}px,0)`);
+            divEl.style.setProperty('transform', `translate(${i / 20}px,0)`);
 
             // divEl.style.setProperty('filter', `hue-rotate(${Math.random() * 360}deg)`);
             setTimeout(() => {
               document.body.appendChild(divEl);
+              setTimeout(() => {
+                divEl.remove();
+              }, 4000 + i * 10);
             }, i * 10);
           }
+        }
+
+        // 爆炸效果
+
+        const y = e.clientY - document.body.offsetTop - 400;
+        const x = e.clientX - document.body.offsetLeft;
+        for (let i = 0; i < 8; i++) {
+          const spanEl = document.createElement('span');
+          spanEl.classList.add('span');
+          spanEl.style.setProperty('--deg', `${i * 45}deg`);
+          spanEl.style.setProperty('--hue', `${rd * 360}deg`);
+          spanEl.style.top = `${y - 100}px`;
+          spanEl.style.left = `${x}px`;
+          setTimeout(() => {
+            document.body.appendChild(spanEl);
+            setTimeout(() => {
+              spanEl.remove();
+            }, 5500);
+          }, 4000 + 300);
         }
       });
     </script>
