@@ -34,32 +34,37 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 10px;
-  height: 140px;
+  height: 430px;
   width: 140px;
   color: #fff;
   border-radius: 50%;
-  transform: translate(var(--x), var(--y));
-  transform-origin: center;
+  transform: rotate(var(--deg));
+  transform-origin: bottom;
   cursor: pointer;
+  /* border: 1px red solid; */
 }
 
 .text {
+  position: absolute;
+  height: 140px;
+  width: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  transform: rotate(calc(var(--deg) * -1));
   animation: text-rotate 30s linear infinite;
 }
 
-.cycle-text::before {
+.text::before {
   content: '';
   position: absolute;
   width: 100%;
   height: 100%;
   background-image: url(./bgg.png);
   background-size: cover;
-  animation: self-rotate 10s linear var(--d) infinite;
+  /* animation: self-rotate 10s linear var(--d) infinite; */
 }
 
 @keyframes self-rotate {
@@ -88,12 +93,12 @@ body {
 
 @keyframes text-rotate {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(calc(var(--deg) * -1));
   }
   50% {
-    transform: rotate(-180deg);
+    transform: rotate(calc(var(--deg) * -1 - 180deg));
   }
   100% {
-    transform: rotate(-360deg);
+    transform: rotate(calc(var(--deg) * -1 - 360deg));
   }
 }
