@@ -46,24 +46,24 @@ body {
   width: 100%;
   border-radius: 20px;
   position: relative;
-  transition: all 0.5s;
+  transition: all 1s;
 }
 .icon-send {
-  background-color: #fff;
   background-size: cover;
   width: 30px;
   height: 30px;
   border-radius: 50%;
   position: absolute;
   left: 10px;
-  transition: all 0.8s;
-  transform: translateX(0) rotate(0deg);
+  transition: all 1s;
 }
 .icon-send.voice {
+  background-color: #fff;
   background-image: url(./keyboard.png);
   transform: translateX(0) rotate(0deg);
 }
 .icon-send.keyboard {
+  background-color: transparent;
   background-image: url(./send.png);
   transform: translateX(350px) rotate(360deg);
 }
@@ -89,6 +89,7 @@ body {
   padding: 0 10px;
   font-size: 18px;
   color: #6a74fb;
+  background-color: transparent;
 }
 .btn.voice span {
   display: flex;
