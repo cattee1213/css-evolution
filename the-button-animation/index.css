@@ -1,0 +1,120 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100vw;
+  height: 100vh;
+  gap: 50px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 100%;
+  gap: 50px;
+  position: relative;
+}
+.opt-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 400px;
+  gap: 10px;
+  position: relative;
+  transition: transform 0.5s;
+}
+.opt-group.hide {
+  transform: translateY(100%);
+}
+.btn {
+  border: 1.5px #6a74fb solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 100%;
+  border-radius: 20px;
+  position: relative;
+  transition: all 0.5s;
+}
+.icon-send {
+  background-color: #fff;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: absolute;
+  left: 10px;
+  transition: all 0.8s;
+  transform: translateX(0) rotate(0deg);
+}
+.icon-send.voice {
+  background-image: url(./keyboard.png);
+  transform: translateX(0) rotate(0deg);
+}
+.icon-send.keyboard {
+  background-image: url(./send.png);
+  transform: translateX(350px) rotate(360deg);
+}
+.btn.voice {
+  background-color: #6a74fb;
+  color: #fff;
+}
+.btn.keyboard {
+  background-color: #fff;
+  color: #6a74fb;
+}
+
+.btn.voice input {
+  display: none;
+}
+.btn.keyboard input {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  font-size: 18px;
+  color: #6a74fb;
+}
+.btn.voice span {
+  display: flex;
+}
+.btn.keyboard span {
+  display: none;
+}
+.btn.listen {
+  width: 100%;
+  transform: scale();
+}
+
+@keyframes move-right {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateX(350px) rotate(360deg);
+  }
+}
+
+@keyframes move-left {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateX(-350px) rotate(-360deg);
+  }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>the button animation</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="opt">
+      <input type="button" value="toggle" onclick="toggleHandler()" />
+      <input type="button" value="touchstart" onclick="touchStartHandler()" />
+      <input type="button" value="touchend" onclick="touchEndHandler()" />
+      <input type="button" value="listen" />
+      <input type="button" value="output" />
+    </div>
+
+    <div class="box">
+      <div class="opt-group">
+        <div type="button" class="btn voice">
+          <div class="icon-send voice"></div>
+          <span>button</span>
+          <input type="text" placeholder="type some thing" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const iconSend = document.querySelector('.icon-send');
+      const btn = document.querySelector('.btn');
+      const optGroup = document.querySelector('.opt-group');
+      function touchStartHandler() {
+        optGroup.classList.add('hide');
+      }
+      function touchEndHandler() {
+        optGroup.classList.remove('hide');
+      }
+
+      function toggleHandler() {
+        if (iconSend.classList.contains('voice')) {
+          iconSend.classList.add('keyboard');
+          iconSend.classList.remove('voice');
+        } else {
+          iconSend.classList.add('voice');
+          iconSend.classList.remove('keyboard');
+        }
+        if (btn.classList.contains('voice')) {
+          btn.classList.add('keyboard');
+          btn.classList.remove('voice');
+        } else {
+          btn.classList.add('voice');
+          btn.classList.remove('keyboard');
+        }
+      }
+    </script>
+  </body>
+</html>
