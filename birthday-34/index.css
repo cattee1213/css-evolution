@@ -1,0 +1,51 @@
+[v-cloak] {
+  display: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: hsl(0, 0%, 15%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.square {
+  height: 100px;
+  width: 100px;
+  background-color: hsl(30, 100%, 50%);
+  position: relative;
+  transform-style: preserve-3d;
+  animation: square-rotate-3d 5s linear infinite;
+}
+
+.square::before {
+  content: '';
+  height: 100px;
+  width: 100px;
+  background-color: hsl(200, 100%, 50%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+}
+
+@keyframes square-rotate-3d {
+  0% {
+    transform: rotate3d(0, 0, 0, 0deg);
+  }
+  50% {
+    transform: rotate3d(1, 1, 0, 180deg);
+  }
+  100% {
+    transform: rotate3d(0, 0, 0, 360deg);
+  }
+}
