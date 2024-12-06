@@ -12,25 +12,36 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: hsl(0, 0%, 15%);
+  /*   background-color: hsl(0, 0%, 15%); */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.row {
+  display: flex;
+  flex-direction: column;
+  /*   gap: 2px; */
+}
+
+.col {
+  display: flex;
+  /*   margin: 0 1px; */
+}
+
 .square {
-  height: 100px;
-  width: 100px;
+  height: 10px;
+  width: 10px;
   background-color: hsl(30, 100%, 50%);
   position: relative;
   transform-style: preserve-3d;
-  animation: square-rotate-3d 5s linear infinite;
+  animation: square-rotate-3d 5s var(--d) 1 forwards;
 }
 
 .square::before {
   content: '';
-  height: 100px;
-  width: 100px;
+  height: 100%;
+  width: 100%;
   background-color: hsl(200, 100%, 50%);
   position: absolute;
   top: 0;
@@ -42,10 +53,7 @@
   0% {
     transform: rotate3d(0, 0, 0, 0deg);
   }
-  50% {
-    transform: rotate3d(1, 1, 0, 180deg);
-  }
   100% {
-    transform: rotate3d(0, 0, 0, 360deg);
+    transform: rotate3d(1, -1, 0, 180deg);
   }
 }

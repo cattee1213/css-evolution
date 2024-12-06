@@ -9,18 +9,36 @@
   </head>
   <body>
     <div class="app" v-cloak>
-      <div class="square"></div>
+      <div v-for="(row,rowIndex) in rows" :key="rowIndex" class="row">
+        <div v-for="(col,colIndex) in cols" :key="colIndex" class="col">
+          <div class="square" :style="cssVars(row,col)">
+            <!-- <span>{{ (row + col) / 2 + Math.abs(row - col) / 5}}</span> -->
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 
   <script>
-    const { createApp, ref } = Vue;
+    const { createApp, ref, computed } = Vue;
 
     createApp({
       setup() {
-        const message = ref('Hello vue!');
+        const rows = ref(30);
+        const cols = ref(30);
+
+        const cssVars = (row, col) => {
+          return {
+            '--x': col,
+            '--y': row,
+            '--d': (row + col) / 5 + Math.abs(row - col) / 5 + 's'
+          };
+        };
+
         return {
-          message
+          rows,
+          cols,
+          cssVars
         };
       }
     }).mount('.app');
