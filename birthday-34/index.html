@@ -11,11 +11,14 @@
     <div class="app" v-cloak>
       <div v-for="(row,rowIndex) in rows" :key="rowIndex" class="row">
         <div v-for="(col,colIndex) in cols" :key="colIndex" class="col">
-          <div class="square" :style="cssVars(row,col)">
-            <!-- <span>{{ (row + col) / 2 + Math.abs(row - col) / 5}}</span> -->
-          </div>
+          <div class="square" :style="cssVars(row,col)"></div>
         </div>
       </div>
+
+      <!-- <div class="img-box">
+        <div class="front" style="--l: 0; --r: 300"></div>
+        <div class="back" style="--l: 300; --r: 0"></div>
+      </div> -->
     </div>
   </body>
 
@@ -24,14 +27,14 @@
 
     createApp({
       setup() {
-        const rows = ref(30);
-        const cols = ref(30);
+        const rows = ref(4);
+        const cols = ref(4);
 
         const cssVars = (row, col) => {
           return {
-            '--x': col,
-            '--y': row,
-            '--d': (row + col) / 5 + Math.abs(row - col) / 5 + 's'
+            '--x': col - 1,
+            '--y': row - 1,
+            '--d': (row + col) / 30 + 's'
           };
         };
 
