@@ -21,86 +21,45 @@
 
 .row {
   display: flex;
-  /*   gap: 2px; */
+  gap: 1px;
 }
 
 .col {
   display: flex;
-  /*   margin: 0 1px; */
+  margin: 0 0.5px;
 }
 
-.square {
-  height: 100px;
-  width: 100px;
-  background-image: url(./front.jpeg);
-  background-size: 400px 400px;
-  background-position: calc(var(--x) * -100px) calc(var(--y) * -100px);
-  position: relative;
-  transform-style: preserve-3d;
-  animation: square-rotate-3d 5s var(--d) 1 forwards;
-}
-
-.square::before {
-  content: '';
-  height: 100%;
-  width: 100%;
-  background-image: url(./back.jpeg);
-  background-size: 400px 400px;
-  background-position: calc(var(--x) * -100px) calc(var(--y) * -100px);
-  position: absolute;
-  top: 0;
-  left: 0;
-  backface-visibility: hidden;
-  transform: rotate(-45deg);
-}
-
-@keyframes square-rotate-3d {
-  0% {
-    transform: rotate3d(0, 0, 0, 0deg);
-  }
-  100% {
-    transform: rotate3d(1, -1, 0, 180deg);
-  }
-}
-
-.img-box {
+.box1 {
+  height: 800px;
+  width: 400px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
-  height: 300px;
   position: relative;
 }
 
-.front {
-  background-image: url(./front.jpeg);
-  background-size: 300px;
-  background-position: left 0;
+.box1 div {
+  height: 10px;
+  width: 10px;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 100%;
-  animation: img-switcher linear 5s 1 reverse forwards;
+  transition: all 5s var(--d);
+  background-color: orange;
+  left: calc(var(--x) * 11px);
+  top: calc(var(--y) * 11px);
+  transform: translateY(-800px);
 }
 
-.back {
-  background-image: url(./back.jpeg);
-  background-size: 300px;
-  background-position: right 0;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  animation: img-switcher linear 5s 1 forwards;
+.show {
+  transform: translateY(0) !important;
+  animation: hue 5s calc(var(--d)) infinite forwards;
 }
 
-@keyframes img-switcher {
+@keyframes hue {
   0% {
-    width: 100%;
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(180deg);
   }
   100% {
-    width: 0%;
+    filter: hue-rotate(360deg);
   }
 }

@@ -9,40 +9,94 @@
   </head>
   <body>
     <div class="app" v-cloak>
-      <div v-for="(row,rowIndex) in rows" :key="rowIndex" class="row">
-        <div v-for="(col,colIndex) in cols" :key="colIndex" class="col">
-          <div class="square" :style="cssVars(row,col)"></div>
-        </div>
-      </div>
+      <div class="box1">
+        <div style="--x: 0; --y: 0"></div>
+        <div style="--x: 1; --y: 0"></div>
+        <div style="--x: 2; --y: 0"></div>
+        <div style="--x: 3; --y: 0"></div>
+        <div style="--x: 4; --y: 0"></div>
+        <div style="--x: 5; --y: 0"></div>
 
-      <!-- <div class="img-box">
-        <div class="front" style="--l: 0; --r: 300"></div>
-        <div class="back" style="--l: 300; --r: 0"></div>
-      </div> -->
+        <div style="--x: 5; --y: 1"></div>
+        <div style="--x: 5; --y: 2"></div>
+        <div style="--x: 5; --y: 3"></div>
+        <div style="--x: 5; --y: 4"></div>
+        <div style="--x: 5; --y: 5"></div>
+
+        <div style="--x: 0; --y: 5"></div>
+        <div style="--x: 1; --y: 5"></div>
+        <div style="--x: 2; --y: 5"></div>
+        <div style="--x: 3; --y: 5"></div>
+        <div style="--x: 4; --y: 5"></div>
+
+        <div style="--x: 5; --y: 6"></div>
+        <div style="--x: 5; --y: 7"></div>
+        <div style="--x: 5; --y: 8"></div>
+        <div style="--x: 5; --y: 9"></div>
+        <div style="--x: 5; --y: 10"></div>
+
+        <div style="--x: 0; --y: 10"></div>
+        <div style="--x: 1; --y: 10"></div>
+        <div style="--x: 2; --y: 10"></div>
+        <div style="--x: 3; --y: 10"></div>
+        <div style="--x: 4; --y: 10"></div>
+
+        <div style="--x: 10; --y: 0"></div>
+        <div style="--x: 11; --y: 0"></div>
+        <div style="--x: 12; --y: 0"></div>
+        <div style="--x: 13; --y: 0"></div>
+        <div style="--x: 14; --y: 0"></div>
+        <div style="--x: 15; --y: 0"></div>
+
+        <div style="--x: 15; --y: 1"></div>
+        <div style="--x: 15; --y: 2"></div>
+        <div style="--x: 15; --y: 3"></div>
+        <div style="--x: 15; --y: 4"></div>
+        <div style="--x: 15; --y: 5"></div>
+
+        <div style="--x: 10; --y: 5"></div>
+        <div style="--x: 11; --y: 5"></div>
+        <div style="--x: 12; --y: 5"></div>
+        <div style="--x: 13; --y: 5"></div>
+        <div style="--x: 14; --y: 5"></div>
+
+        <div style="--x: 15; --y: 6"></div>
+        <div style="--x: 15; --y: 7"></div>
+        <div style="--x: 15; --y: 8"></div>
+        <div style="--x: 15; --y: 9"></div>
+        <div style="--x: 15; --y: 10"></div>
+
+        <div style="--x: 10; --y: 10"></div>
+        <div style="--x: 11; --y: 10"></div>
+        <div style="--x: 12; --y: 10"></div>
+        <div style="--x: 13; --y: 10"></div>
+        <div style="--x: 14; --y: 10"></div>
+      </div>
     </div>
   </body>
 
   <script>
-    const { createApp, ref, computed } = Vue;
+    // 33
+    // show photo animation
+    // wave animation
+    // camera leave
+    // 34
+    const { createApp, ref, computed, onMounted } = Vue;
 
     createApp({
       setup() {
-        const rows = ref(4);
-        const cols = ref(4);
+        onMounted(() => {
+          setTimeout(() => {
+            const divNodes = document.querySelectorAll('.box1 div');
+            divNodes.forEach((node) => {
+              const d = Math.random();
+              node.style.setProperty('--d', `${d + 0.5}s`);
+              node.classList.add('show');
+            });
+          });
+        });
 
-        const cssVars = (row, col) => {
-          return {
-            '--x': col - 1,
-            '--y': row - 1,
-            '--d': (row + col) / 30 + 's'
-          };
-        };
-
-        return {
-          rows,
-          cols,
-          cssVars
-        };
+        return {};
       }
     }).mount('.app');
   </script>
