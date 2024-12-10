@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 
-.app {
+body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -19,48 +19,9 @@
   align-items: center;
 }
 
-.row {
-  display: flex;
-  gap: 1px;
-}
-
-.col {
-  display: flex;
-  margin: 0 0.5px;
-}
-
-.box1 {
+section {
+  width: 600px;
   height: 800px;
-  width: 400px;
-  display: flex;
-  position: relative;
-}
-
-.box1 div {
-  height: 20px;
-  width: 20px;
-  position: absolute;
-  transition: all 5s var(--d);
-  background-color: orange;
-  left: calc(var(--x) * 21px);
-  top: calc(var(--y) * 21px);
-  transform-style: preserve-3d;
-  transform: translateY(-800px) translate3d(0, 0, 0, 1800deg);
-}
-
-.show {
-  transform: translateY(0) translate3d(1, 1, 1, 0deg) !important;
-  animation: hue 5s calc(var(--d)) infinite forwards;
-}
-
-@keyframes hue {
-  0% {
-    filter: hue-rotate(0deg);
-  }
-  50% {
-    filter: hue-rotate(180deg);
-  }
-  100% {
-    filter: hue-rotate(360deg);
-  }
+  word-spacing: -3px;
+  line-height: 14px;
 }
