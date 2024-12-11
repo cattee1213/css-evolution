@@ -48,18 +48,18 @@
 
     createApp({
       setup() {
-        onMounted(() => {
-          const text = document.querySelector('.text').innerText;
-          let textHtml = '';
-          text.split('').forEach((char) => {
-            const rx = (Math.random() - 0.5) * 300;
-            const ry = (Math.random() - 0.5) * 300;
-            const rr = (Math.random() - 0.5) * 360;
-            textHtml += `<div><span style="--x:${rx}px;--y:${ry}px;--r:${rr}deg">${char}</span></div>`;
-          });
-          document.querySelector('.text').innerHTML = textHtml;
-        });
-        return {};
+        // onMounted(() => {
+        //   const text = document.querySelector('.text').innerText;
+        //   let textHtml = '';
+        //   text.split('').forEach((char) => {
+        //     const rx = (Math.random() - 0.5) * 300;
+        //     const ry = (Math.random() - 0.5) * 300;
+        //     const rr = (Math.random() - 0.5) * 360;
+        //     textHtml += `<div><span style="--x:${rx}px;--y:${ry}px;--r:${rr}deg">${char}</span></div>`;
+        //   });
+        //   document.querySelector('.text').innerHTML = textHtml;
+        // });
+        // return {};
       }
     }).mount('.app');
   </script>
