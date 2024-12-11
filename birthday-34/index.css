@@ -19,9 +19,38 @@ body {
   align-items: center;
 }
 
-section {
+.text {
   width: 600px;
   height: 800px;
   word-spacing: -3px;
   line-height: 14px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  background-image: url(bb.PNG);
+  background-size: cover;
+  background-blend-mode: color-dodge;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.text div {
+  position: relative;
+  display: flex;
+}
+
+.text span {
+  /* animation: ac 5s 1 forwards; */
+}
+
+@keyframes ac {
+  0% {
+    transform: translate(0, 0) rotate(0);
+  }
+  50% {
+    transform: translate(var(--x), var(--y)) rotate(var(--r));
+  }
+  100% {
+    transform: translate(0, 0) rotate(0);
+  }
 }
