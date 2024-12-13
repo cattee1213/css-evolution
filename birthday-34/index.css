@@ -20,16 +20,14 @@ body {
 }
 
 .text {
-  width: 280px;
-  height: 280px;
+  width: 700px;
+  height: 700px;
   position: relative;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  background-image: url(front.jpeg);
-  background-size: cover;
-
-  /* background-attachment: fixed; */
+  background-image: url(image.png);
+  background-size: 100% 100%;
   background-blend-mode: color-dodge;
   -webkit-background-clip: text;
   background-clip: text;
@@ -37,12 +35,10 @@ body {
 
 .flex-div {
   display: flex;
-  height: 10.5px;
-  width: 6px;
+  height: 20px;
 }
 .div {
-  height: 10.5px;
-  width: 6px;
+  height: 20px;
 }
 
 .ps-div {
@@ -51,14 +47,14 @@ body {
 
 .ps-div span {
   position: absolute;
-  transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(10);
+  transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(5);
 }
 
 span {
   transform: translate(0, 0) rotate(0deg) scale(1);
-  transition: all 1s;
+  transition: all 0.8s;
   color: wheat;
-  font-size: 12px;
+  font-size: 24px;
 }
 
 .animation {
@@ -73,7 +69,6 @@ span {
   0% {
     filter: hue-rotate(var(--r));
   }
-
   100% {
     filter: hue-rotate(0);
   }

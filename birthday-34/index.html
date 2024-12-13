@@ -6,6 +6,7 @@
     <title>birthday-34</title>
     <link rel="stylesheet" href="./index.css" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./text.js"></script>
   </head>
   <body>
     <div class="app" v-cloak>
@@ -14,28 +15,14 @@
   </body>
 
   <script>
-    // 33
-    // show photo animation
-    // wave animation
-    // camera leave
-    // 34
     const { createApp, ref, computed, onMounted } = Vue;
-
-    const text = `Baby, I know you miss your mom and I know you miss your dad When I’m gone but I’m trying to give you the life that I never had I can see
-you’re sad, even when you smile even when you laugh I can see it in your eyes deep inside, you wanna cry Cause you’re scared I ain’t there,
-Daddy’s with you in your prayers No more cryin wipe them tears, Daddy’s here no more nightmares We gonna pull together through it we gonna do
-it Lainie, uncle’s crazy ain’t he, yeah but he loves you girl and you better know it We’re all we got in this world when it spins, when it
-swirls When it whirls, when it twirls, two little beautiful girls Lookin puzzled, in a daze I know it’s confusing you Daddy’s always on the
-move, Mama’s always on the news I try to keep you sheltered from it but somehow it seems The harder that I try to do that the more it
-backfires on me All the things, growin up as daddy that he had to see Daddy don’t want you to see but you see just as much as he did We did
-not plan it to be this way your mother and me But things have got so bad between us I don’t see us ever being together ever again Like we used`;
     createApp({
       setup() {
         onMounted(() => {
-          let textArr = text.split('');
+          let textArr = text.replaceAll(' ', '').split('');
           let index = 0;
           const timer = setInterval(() => {
-            if (index === textArr.length) {
+            if (index >= textArr.length) {
               clearInterval(timer);
             }
             index++;
@@ -43,13 +30,13 @@ not plan it to be this way your mother and me But things have got so bad between
             rx < 0 ? (rx -= 720) : (rx += 720);
             let ry = (Math.random() - 0.5) * 500;
             ry < 0 ? (ry -= 720) : (ry += 720);
-            const rr = (Math.random() - 0.5) * 360;
+            const rr = (Math.random() - 0.5) * 960;
             const divNode = document.createElement('div');
             divNode.classList.add('flex-div');
             divNode.classList.add('ps-div');
             const spanNode = document.createElement('span');
             spanNode.innerText = textArr[index - 1];
-            if (spanNode.innerText === undefined) {
+            if (spanNode.innerText === 'undefined') {
               spanNode.innerText = '';
             }
             spanNode.classList.add('animation');
@@ -59,13 +46,13 @@ not plan it to be this way your mother and me But things have got so bad between
             setTimeout(() => {
               divNode.classList.remove('ps-div');
               setTimeout(() => {
-                spanNode.classList.remove('animation');
                 divNode.classList.remove('flex-div');
                 divNode.classList.add('div');
                 spanNode.classList.add('tp');
-              }, 1000);
-            }, 1000);
-          }, 20);
+                spanNode.classList.remove('animation');
+              }, 800);
+            }, 800);
+          }, 13);
         });
         return {};
       }
