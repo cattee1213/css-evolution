@@ -20,13 +20,12 @@ body {
 }
 
 .text {
-  width: 520px;
-  height: 520px;
-  word-spacing: 0px;
-  line-height: 10px;
+  width: 280px;
+  height: 280px;
   position: relative;
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   background-image: url(front.jpeg);
   background-size: cover;
 
@@ -34,16 +33,48 @@ body {
   background-blend-mode: color-dodge;
   -webkit-background-clip: text;
   background-clip: text;
+}
+
+.flex-div {
+  display: flex;
+  height: 10.5px;
+  width: 6px;
+}
+.div {
+  height: 10.5px;
+  width: 6px;
+}
+
+.ps-div {
+  position: relative;
+}
+
+.ps-div span {
+  position: absolute;
+  transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(10);
+}
+
+span {
+  transform: translate(0, 0) rotate(0deg) scale(1);
+  transition: all 1s;
+  color: wheat;
   font-size: 12px;
-  animation: ac 5s 1 forwards;
+}
+
+.animation {
+  animation: hr 1s infinite forwards;
+}
+
+.tp {
   color: transparent;
 }
 
-@keyframes ac {
+@keyframes hr {
   0% {
-    opacity: 0;
+    filter: hue-rotate(var(--r));
   }
+
   100% {
-    opacity: 1;
+    filter: hue-rotate(0);
   }
 }
