@@ -12,7 +12,7 @@
   </body>
 
   <script>
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({ yoyo: true, repeat: 2 });
 
     tl.to('.rect', {
       duration: 2,
@@ -29,10 +29,5 @@
         console.log('animation completed');
       }
     });
-    // tl.pause();
-    // tl.resume();
-    // tl.pause();
-    tl.reverse();
-    tl.resume();
   </script>
 </html>
