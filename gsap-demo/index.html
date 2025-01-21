@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gsap demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="rect">this is a text string</div>
+  </body>
+
+  <script>
+    const tl = gsap.timeline();
+
+    tl.to('.rect', {
+      duration: 2,
+      scale: 1.5,
+      ease: 'bounce',
+      onComplete: () => {
+        console.log('animation completed');
+      }
+    }).to('.rect', {
+      duration: 2,
+      rotation: 360,
+      ease: 'bounce',
+      onComplete: () => {
+        console.log('animation completed');
+      }
+    });
+    // tl.pause();
+    // tl.resume();
+    // tl.pause();
+    tl.reverse();
+    tl.resume();
+  </script>
+</html>
