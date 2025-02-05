@@ -8,26 +8,19 @@
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
-    <div class="rect">this is a text string</div>
+    <div class="rect rect1"></div>
+    <div class="rect rect2"></div>
+    <div class="rect rect3"></div>
+    <div class="rect rect4"></div>
+    <div class="rect rect5"></div>
   </body>
 
   <script>
-    const tl = gsap.timeline({ yoyo: true, repeat: 2 });
+    gsap.to('.rect1', { delay: 1, x: 200 });
+    gsap.from('.rect2', { delay: 1, x: 200 });
+    gsap.fromTo('.rect3', { delay: 1, x: 0 }, { delay: 2, x: 200 });
+    gsap.set('.rect4', { delay: 1, x: 200 });
 
-    tl.to('.rect', {
-      duration: 2,
-      scale: 1.5,
-      ease: 'bounce',
-      onComplete: () => {
-        console.log('animation completed');
-      }
-    }).to('.rect', {
-      duration: 2,
-      rotation: 360,
-      ease: 'bounce',
-      onComplete: () => {
-        console.log('animation completed');
-      }
-    });
+    gsap.to('.rect5', { x: 200, duration: 2, rotation: 360, yoyo: true, repeat: -1 });
   </script>
 </html>
