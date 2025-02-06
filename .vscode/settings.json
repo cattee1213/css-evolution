@@ -1,4 +1,6 @@
 {
   "liveServer.settings.port": 5501,
-  "livePreview.defaultPreviewPath": "/birthday-34/index.html"
+  "livePreview.defaultPreviewPath": "/birthday-34/index.html",
+  "commentTranslate.targetLanguage": "zh-CN",
+  "commentTranslate.source": "Copilot"
 }

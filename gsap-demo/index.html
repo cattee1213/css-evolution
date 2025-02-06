@@ -13,6 +13,18 @@
     <div class="rect rect3"></div>
     <div class="rect rect4"></div>
     <div class="rect rect5"></div>
+
+    <div style="width: 200px; display: flex; justify-content: space-between">
+      <div class="rect rect6">linear</div>
+      <div class="rect rect6">in</div>
+      <div class="rect rect6">out</div>
+    </div>
+
+    <div class="rect group"></div>
+    <div class="rect group"></div>
+    <div class="rect group"></div>
+    <div class="rect group"></div>
+    <div class="rect group"></div>
   </body>
 
   <script>
@@ -22,5 +34,33 @@
     gsap.set('.rect4', { delay: 1, x: 200 });
 
     gsap.to('.rect5', { x: 200, duration: 2, rotation: 360, yoyo: true, repeat: -1 });
+
+    // group
+    gsap.to('.group', {
+      x: 200,
+      duration: 2,
+      stagger: 1,
+      yoyo: true,
+      repeat: -1
+    });
+
+    gsap.to('.rect6:nth-child(1)', {
+      rotation: 360,
+      duration: 2,
+      ease: 'linear',
+      repeat: -1
+    });
+    gsap.to('.rect6:nth-child(2)', {
+      rotation: 360,
+      duration: 2,
+      ease: 'bounce.in',
+      repeat: -1
+    });
+    gsap.to('.rect6:nth-child(3)', {
+      rotation: 360,
+      duration: 2,
+      ease: 'bounce.out',
+      repeat: -1
+    });
   </script>
 </html>
