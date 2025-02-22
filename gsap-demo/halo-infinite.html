@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>halo</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        --logo-color: #d3daff;
+      }
+      body {
+        height: 100vh;
+        background: url(./image.png) no-repeat;
+        background-size: cover;
+        background-position: center;
+        /* background-color: #000; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+        position: relative;
+        transform: translateX(-25px);
+      }
+
+      .i {
+        width: 1px;
+        /* width: 4px; */
+        height: 70px;
+        background: var(--logo-color);
+      }
+
+      .pa_2 {
+        position: absolute;
+        left: calc(1 * 50px + 1px + 4px);
+        top: 0;
+        width: 48px;
+        height: 6px;
+        background: var(--logo-color);
+        transform: skewY(53.3deg);
+        transform-origin: top left;
+      }
+
+      .pa_4_1 {
+        position: absolute;
+        left: calc(3 * 50px + 3px + 4px);
+        top: 0;
+        width: 37px;
+        height: 4px;
+        background: var(--logo-color);
+        transform-origin: left;
+      }
+      .pa_4_2 {
+        position: absolute;
+        left: calc(3 * 50px + 3px + 4px);
+        top: 33px;
+        width: 30px;
+        height: 4px;
+        background: var(--logo-color);
+        transform-origin: left;
+      }
+
+      .pa_6 {
+        position: absolute;
+        left: calc(5 * 50px + 5px + 4px + 25px);
+        top: 0;
+        width: 48px;
+        height: 6px;
+        background: var(--logo-color);
+        transform: skewY(53.3deg);
+        transform-origin: top left;
+      }
+
+      .pa_9 {
+        position: absolute;
+        left: calc(8 * 50px + 8px + 1px + 25px + 13px - 15px - 4px);
+        top: 0;
+        width: 41px;
+        height: 4px;
+        background: var(--logo-color);
+      }
+
+      .pa_10_1 {
+        position: absolute;
+        left: calc(9 * 50px + 9px + 4px + 25px + 26px);
+        top: 0;
+        width: 37px;
+        height: 4px;
+        background: var(--logo-color);
+        transform-origin: left;
+      }
+      .pa_10_2 {
+        position: absolute;
+        left: calc(9 * 50px + 9px + 4px + 25px + 26px);
+        top: 33px;
+        width: 30px;
+        height: 4px;
+        background: var(--logo-color);
+        transform-origin: left;
+      }
+      .pa_10_3 {
+        position: absolute;
+        left: calc(9 * 50px + 9px + 4px + 25px + 26px);
+        top: 66px;
+        width: 37px;
+        height: 4px;
+        background: var(--logo-color);
+        transform-origin: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <span class="i i_1" style="transform-origin: 0 70%"></span>
+      <span class="i i_2" style="transform-origin: 0 30%"></span>
+      <span class="i i_3" style="transform-origin: 0 70%"></span>
+      <span class="i i_4" style="transform-origin: 0 70%"></span>
+      <span class="i i_5" style="transform-origin: 0 30%; margin-left: 25px"></span>
+      <span class="i i_6" style="transform-origin: 0 60%"></span>
+      <span class="i i_7" style="transform-origin: 0 40%"></span>
+      <span class="i i_8" style="transform-origin: 0 80%"></span>
+      <span class="i i_9" style="transform-origin: 0 30%; margin: 0 13px"></span>
+      <span class="i i_10" style="transform-origin: 0 70%"></span>
+
+      <span class="pa_2"></span>
+      <span class="pa_4_1"></span>
+      <span class="pa_4_2"></span>
+      <span class="pa_6"></span>
+      <span class="pa_9"></span>
+
+      <span class="pa_10_1"></span>
+      <span class="pa_10_2"></span>
+      <span class="pa_10_3"></span>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ defaults: { duration: 1.5 } });
+
+      tl.from('.i_1', { scaleY: 0, opacity: 0 });
+      tl.to('.i_1', { scaleX: 4 }, '-=1.5');
+
+      tl.from('.i_2', { scaleY: 0, opacity: 0 }, 0.4);
+      tl.to('.i_2', { scaleX: 4 }, 0.9);
+
+      tl.from('.i_3', { scaleY: 0, opacity: 0, y: 10 }, 0.6);
+      tl.to('.i_3', { scaleX: 4 }, 1.1);
+
+      tl.from('.i_4', { scaleY: 0, opacity: 0 }, 0.2);
+      tl.to('.i_4', { scaleX: 4 }, 0.7);
+
+      tl.from('.i_5', { scaleY: 0, opacity: 0 }, 0.5);
+      tl.to('.i_5', { scaleX: 4 }, 1);
+
+      tl.from('.i_6', { scaleY: 0, opacity: 0, y: 15 }, 0.3);
+      tl.to('.i_6', { scaleX: 4 }, 0.8);
+
+      tl.from('.i_7', { scaleY: 0, opacity: 0 }, 0.7);
+      tl.to('.i_7', { scaleX: 4 }, 1.2);
+
+      tl.from('.i_8', { scaleY: 0, opacity: 0, y: 15 }, 0.2);
+      tl.to('.i_8', { scaleX: 4 }, 0.7);
+
+      tl.from('.i_9', { scaleY: 0, opacity: 0 }, 0.3);
+      tl.to('.i_9', { scaleX: 4 }, 0.8);
+
+      tl.from('.i_10', { scaleY: 0, opacity: 0, y: 10 }, 0);
+      tl.to('.i_10', { scaleX: 4 }, 0.5);
+
+      tl.from('.pa_2', { scaleX: 0 }, 2);
+      tl.from('.pa_4_1,.pa_4_2', { scaleX: 0 }, 2);
+      tl.from('.pa_6', { scaleX: 0 }, 2);
+      tl.from('.pa_9', { scaleX: 0 }, 2);
+      tl.from('.pa_10_1', { scaleX: 0 }, 2);
+      tl.from('.pa_10_2', { scaleX: 0 }, 2);
+      tl.from('.pa_10_3', { scaleX: 0 }, 2);
+
+      tl.to('.box', { scale: 1.08, duration: 11 }, 0);
+
+      tl.to('.box span', { background: `hsl(220,50%,80%)`, duration: 1 }, 7);
+      tl.to('.box span', { background: `hsl(220,50%,55%)`, duration: 1 }, 8);
+      tl.to('.box span', { background: `hsl(220,50%,30%)`, duration: 1 }, 9);
+      tl.to('.box span', { background: `hsl(220,50%,15%)`, duration: 1 }, 10);
+    </script>
+  </body>
+</html>
